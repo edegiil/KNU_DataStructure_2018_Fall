@@ -1,2 +1,6 @@
-# KNU_DataStructure_2018_Fall
-KNU Data Structure COME331 2018 Fall
+# KNU_DataStructure_COME331_2018_Fall
+### AUTHOR 
+> wingtree
+
+## INDEX
+* HW1 - 2018.09.28
