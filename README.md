@@ -2,5 +2,5 @@
 ### AUTHOR 
 > wingtree
 
-## INDEX
+## LOG
 * HW1 - 2018.09.28
