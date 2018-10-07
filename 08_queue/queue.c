@@ -13,6 +13,7 @@ typedef struct queue{
 }QUEUE;
 
 QUEUE* create_queue(){
+    printf("creating stack...");
     QUEUE* queue;
     queue = (QUEUE*)malloc(sizeof(QUEUE));
     if(queue){
@@ -75,24 +76,23 @@ int main() {
     int data_b[8] = {2, 4, 6, 8, 10, 12, 14, 16};
 
     for(int i = 0; i < 8; i++){
-        printf("check\n");
         enqueue(queue1, &data_a[i]);
         enqueue(queue2, &data_b[i]);
     }
 
     printf("%d\n", *(int*)(dequeue(queue1)));
     printf("%d\n", *(int*)(dequeue(queue1)));
-   
-    // check_queue(queue1);
-
+    
+    printf("merging queue...");
     QUEUE* merged_queue = create_queue();
-
+    
     for(int i = 0; i < sizeof(queue1); i++){
-        // enqueue(merged_queue, dequeue(queue1));
-        // enqueue(merged_queue, dequeue(queue2));
+        enqueue(merged_queue, dequeue(queue1));
+        enqueue(merged_queue, dequeue(queue2));
     }
+    printf("merge complete!");
 
-    // check_queue(merged_queue);
+    check_queue(merged_queue);
 
     return 0;
 }
