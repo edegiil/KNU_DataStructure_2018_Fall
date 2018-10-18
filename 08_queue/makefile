@@ -1,6 +1,14 @@
+compile:
+	gcc -c ADT_queue.c
+	gcc -c main.c
+	gcc -o queue ADT_queue.o main.o
+
 all:
-	gcc queue.c -o queue
+	gcc -c ADT_queue.c
+	gcc -c main.c
+	gcc -o queue ADT_queue.o main.o
 	./queue
 
 help:
-	@echo all
+	@echo all - compile and execute
+	@echo compile - compile and linking
