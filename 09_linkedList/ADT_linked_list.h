@@ -17,5 +17,5 @@ typedef struct {
 NODE* create_node();
 LIST* create_list();
 bool node_insertion(LIST* list, unsigned int index, void* data);
-void* node_deletion(LIST* list, int index);
+void* node_deletion(LIST* list, unsigned int index);
 int check_list();
