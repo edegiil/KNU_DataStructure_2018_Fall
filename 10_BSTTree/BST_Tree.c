@@ -57,7 +57,7 @@ T_NODE* add_bst(T_NODE* root, int data){
 T_NODE* del_bst(T_NODE* root, int data, bool* success){
 T_NODE* search;
 
-	if(root == NULL){
+	if(!(root)){
 		*success = success;
 		return NULL;
 	}
@@ -71,13 +71,13 @@ T_NODE* search;
 	}else{
 		T_NODE* deleted_node = root;
 		T_NODE* new_root;
-		if(root->left = NULL){
+		if(!(root->left)){
 			new_root = root->right;
 			free(deleted_node);
 			*success = true;
 			return new_root;
 		}else{
-			if(root->right == NULL){
+			if(!(root->right)){
 				new_root = root->left;
 				free(deleted_node);
 				*success = true;
@@ -93,4 +93,68 @@ T_NODE* search;
 		}
 	}
 	return NULL;
+}
+
+T_NODE* find_smallest_node(T_NODE* node){
+	if(!(node->left)){
+		return node;
+	}else{
+		return find_smallest_node(node->left);
+	}
+}
+
+T_NODE* find_largest_node(T_NODE* node){
+	if(!(node->right)){
+		return node;
+	}else{
+		return find_largest_node(node->right);
+	}
+}
+
+T_NODE* search_bst(T_NODE* node, int data){
+	if(node->data < data){
+		return search_bst(node->left, data);
+	}else if(node->data > data){
+		return search_bst(node->right, data);
+	}else{
+		return node;
+	}
+}
+
+void traverse_preorder(T_NODE* root){
+	if(root){
+		printf("this one is %d", root->data);
+		traverse_preorder(root->left);
+		traverse_preorder(root->right);
+	}
+}
+
+void traverse_inorder(T_NODE* root){
+	if(root){
+		traverse_inorder(root->left);
+		printf("this one is %d", root->data);
+		traverse_inorder(root->right);
+	}
+}
+
+void traverse_postorder(T_NODE* root){
+	traverse_postorder(root->left);
+	traverse_postorder(root->right);
+	printf("this one is %d", root->data);
+}
+
+BST_TREE* copy_tree(BST_TREE* tree){
+	BST_TREE* new_tree = create_bst();
+	new_tree->root = tree->root;
+	T_NODE* next = sub_datas_of(tree);
+	while(!next){
+		BST_insert(new_tree, next->data);
+		next = sub_datas_of(tree);
+	}
+	return new_tree;
+}
+
+T_NODE* sub_datas_of(T_NODE* node){
+	node->left 
+
 }

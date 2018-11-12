@@ -23,6 +23,5 @@ int main(){
 
 	printf("%d is right\n", (tree->root->right->data));
 
-
 	return 0;
 }
