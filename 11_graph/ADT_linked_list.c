@@ -117,14 +117,14 @@ int check_list(LIST* list){
 }
 
 void* get_data_at(LIST* list, unsigned int index){
-    int data;
+    void* data;
     list->pos = list->front;
     for(int i = 1; i <= index; i++){
         list->pos = list->pos->next;
         if(i==index){
             return data; 
-            printf("%d ", data);
+            printf("%ls ", (int*)data);
         }
     }
-    return -1;
+    return (void*)-1;
 }
