@@ -55,7 +55,7 @@ T_NODE* add_bst(T_NODE* root, int data){
 }
 
 T_NODE* del_bst(T_NODE* root, int data, bool* success){
-T_NODE* search;
+	T_NODE* search;
 
 	if(!(root)){
 		*success = success;
@@ -84,7 +84,7 @@ T_NODE* search;
 				return new_root;
 			}else{
 				search = root->left;
-				while(search->right != NULL){
+				while(search->right){
 					search = search->right;
 				}
 				root->data = search->data;
@@ -123,7 +123,7 @@ T_NODE* search_bst(T_NODE* node, int data){
 
 void traverse_preorder(T_NODE* root){
 	if(root){
-		printf("this one is %d", root->data);
+		printf("this one is %d\n", root->data);
 		traverse_preorder(root->left);
 		traverse_preorder(root->right);
 	}
@@ -132,29 +132,29 @@ void traverse_preorder(T_NODE* root){
 void traverse_inorder(T_NODE* root){
 	if(root){
 		traverse_inorder(root->left);
-		printf("this one is %d", root->data);
+		printf("this one is %d\n", root->data);
 		traverse_inorder(root->right);
 	}
 }
 
 void traverse_postorder(T_NODE* root){
-	traverse_postorder(root->left);
-	traverse_postorder(root->right);
-	printf("this one is %d", root->data);
+	if(root){
+		traverse_postorder(root->left);
+		traverse_postorder(root->right);
+		printf("this one is %d\n", root->data);
+	}
 }
 
 BST_TREE* copy_tree(BST_TREE* tree){
 	BST_TREE* new_tree = create_bst();
 	new_tree->root = tree->root;
-	T_NODE* next = sub_datas_of(tree);
-	while(!next){
-		BST_insert(new_tree, next->data);
-		next = sub_datas_of(tree);
+	if(new_tree->root){
+		BST_TREE* left_tree = create_bst();
+		BST_TREE* right_tree = create_bst();
+		left_tree->root = tree->root->left;
+		right_tree->root = tree->root->right;
+		new_tree->root->left = copy_tree(left_tree)->root;
+		new_tree->root->right = copy_tree(right_tree)->root;
 	}
 	return new_tree;
-}
-
-T_NODE* sub_datas_of(T_NODE* node){
-	node->left 
-
 }
